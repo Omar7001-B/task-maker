@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Description Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1>Task Description Generator</h1>
+      
+      <div id="error" class="error-message hidden"></div>
+
+      <form id="taskForm">
+        <!-- Basic Information -->
+        <div class="section">
+          <h2>Basic Information</h2>
+          <div class="grid">
+            <div>
+              <label for="prefix">
+                Prefix <span class="required">*</span>
+              </label>
+              <select id="prefix" name="prefix" required>
+                <option value="">Select Prefix</option>
+                <option value="FE">FE</option>
+                <option value="BE">BE</option>
+                <option value="API">API</option>
+                <option value="DB">DB</option>
+                <option value="UI">UI</option>
+                <option value="UX">UX</option>
+                <option value="INFRA">INFRA</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="category">
+                Category <span class="required">*</span>
+              </label>
+              <select id="category" name="category" required>
+                <option value="">Select Category</option>
+                <option value="Feature">Feature</option>
+                <option value="Bug">Bug</option>
+                <option value="Refactor">Refactor</option>
+                <option value="Research">Research</option>
+                <option value="Test">Test</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Short Description Section -->
+        <div class="section">
+          <h2>Short Description</h2>
+          <div class="field-group">
+            <div>
+              <label for="taskAbout">
+                What is the task about? <span class="required">*</span>
+                <button type="button" class="btn-add" onclick="addInputField('taskAbout')">+</button>
+              </label>
+              <div id="taskAbout-container" class="multi-input-container">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="taskAbout"
+                    name="taskAbout[]"
+                    id="taskAbout"
+                    placeholder="Describe the task in one sentence"
+                    required
+                  >
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="taskGoal">
+                What is the goal of this task?
+                <button type="button" class="btn-add" onclick="addInputField('taskGoal')">+</button>
+              </label>
+              <div id="taskGoal-container" class="multi-input-container">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="taskGoal"
+                    name="taskGoal[]"
+                    id="taskGoal"
+                    placeholder="State the main objective of this task"
+                  >
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Long Description Section -->
+        <div class="section">
+          <h2>Long Description</h2>
+          <div class="field-group">
+            <div>
+              <label for="taskWhy">
+                Why is this task needed?
+                <button type="button" class="btn-add" onclick="addInputField('taskWhy')">+</button>
+              </label>
+              <div id="taskWhy-container" class="multi-input-container">
+                <div class="input-group">
+                  <textarea
+                    class="taskWhy"
+                    name="taskWhy"
+                    rows="3"
+                    placeholder="Explain the business value or technical necessity"
+                  ></textarea>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="taskHow">
+                How will this task be implemented?
+                <button type="button" class="btn-add" onclick="addInputField('taskHow')">+</button>
+              </label>
+              <div id="taskHow-container" class="multi-input-container">
+                <div class="input-group">
+                  <textarea
+                    class="taskHow"
+                    name="taskHow"
+                    rows="3"
+                    placeholder="Describe the technical approach or implementation steps"
+                  ></textarea>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="acceptanceCriteria">
+                What are the acceptance criteria?
+                <button type="button" class="btn-add" onclick="addInputField('acceptanceCriteria')">+</button>
+              </label>
+              <div id="acceptanceCriteria-container" class="multi-input-container">
+                <div class="input-group">
+                  <textarea
+                    class="acceptanceCriteria"
+                    name="acceptanceCriteria"
+                    rows="3"
+                    placeholder="List the conditions that must be met for this task to be considered complete"
+                  ></textarea>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="dependencies">
+                Are there any dependencies or prerequisites?
+                <button type="button" class="btn-add" onclick="addInputField('dependencies')">+</button>
+              </label>
+              <div id="dependencies-container" class="multi-input-container">
+                <div class="input-group">
+                  <textarea
+                    class="dependencies"
+                    name="dependencies"
+                    rows="2"
+                    placeholder="List any tasks, resources, or conditions that must be completed first"
+                  ></textarea>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Details Section -->
+        <div class="section">
+          <h2>Additional Details</h2>
+          <div class="grid">
+            <div>
+              <label for="pathLocation">Path/Location</label>
+              <input
+                type="text"
+                id="pathLocation"
+                name="pathLocation"
+                placeholder="e.g., src/components/UserProfile"
+              >
+            </div>
+
+            <div>
+              <label for="priority">Priority</label>
+              <select id="priority" name="priority">
+                <option value="">Select Priority</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+              </select>
+            </div>
+
+            <div class="full-width">
+              <label for="deadline">Deadline</label>
+              <input type="date" id="deadline" name="deadline">
+            </div>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn btn-primary">Generate</button>
+          <button type="button" class="btn btn-secondary" id="resetBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="output" class="output-container hidden">
+      <div class="output-box short-description">
+        <div class="output-header">
+          <h2>Task Short Description</h2>
+          <div class="button-group">
+            <button class="btn btn-icon" onclick="improveWithAI()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 1 1-10 10h10V2z"/><path d="M12 12 8 8"/><path d="m12 12 4-4"/></svg>
+              Improve with AI
+            </button>
+            <button class="btn btn-icon" onclick="copyToClipboard('shortOutput')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs" id="shortDescTabs">
+            <button class="tab active" data-index="0">Version 1</button>
+          </div>
+          <button class="btn-close-tab hidden" onclick="closeTab('short', this.dataset.index)">×</button>
+        </div>
+        <div class="tab-content" id="shortDescContent">
+          <pre id="shortOutput" class="tab-pane active"></pre>
+        </div>
+      </div>
+
+      <div class="output-box full-description">
+        <div class="output-header">
+          <h2>Task Full Description</h2>
+          <div class="button-group">
+            <button class="btn btn-icon" onclick="improveWithAI()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 1 1-10 10h10V2z"/><path d="M12 12 8 8"/><path d="m12 12 4-4"/></svg>
+              Improve with AI
+            </button>
+            <button class="btn btn-icon" onclick="copyToClipboard('fullOutput')">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              Copy
+            </button>
+            <button class="btn btn-icon" onclick="exportJSON()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Export JSON
+            </button>
+          </div>
+        </div>
+        <div class="tabs-container">
+          <div class="tabs" id="fullDescTabs">
+            <button class="tab active" data-index="0">Version 1</button>
+          </div>
+          <button class="btn-close-tab hidden" onclick="closeTab('full', this.dataset.index)">×</button>
+        </div>
+        <div class="tab-content" id="fullDescContent">
+          <pre id="fullOutput" class="tab-pane active"></pre>
+        </div>
+      </div>
+    </div>
+
+    <footer>Created by Omar Abbas</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
