@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task Description Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -58,7 +59,9 @@
             <div>
               <label for="taskAbout">
                 What is the task about? <span class="required">*</span>
-                <button type="button" class="btn-add" onclick="addInputField('taskAbout')">+</button>
+                <button type="button" class="btn-add" onclick="addInputField('taskAbout')">
+                  <i class="fas fa-plus"></i>
+                </button>
               </label>
               <div id="taskAbout-container" class="multi-input-container">
                 <div class="input-group">
@@ -70,7 +73,9 @@
                     placeholder="Describe the task in one sentence"
                     required
                   >
-                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -78,7 +83,9 @@
             <div>
               <label for="taskGoal">
                 What is the goal of this task?
-                <button type="button" class="btn-add" onclick="addInputField('taskGoal')">+</button>
+                <button type="button" class="btn-add" onclick="addInputField('taskGoal')">
+                  <i class="fas fa-plus"></i>
+                </button>
               </label>
               <div id="taskGoal-container" class="multi-input-container">
                 <div class="input-group">
@@ -89,7 +96,9 @@
                     id="taskGoal"
                     placeholder="State the main objective of this task"
                   >
-                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -103,7 +112,9 @@
             <div>
               <label for="taskWhy">
                 Why is this task needed?
-                <button type="button" class="btn-add" onclick="addInputField('taskWhy')">+</button>
+                <button type="button" class="btn-add" onclick="addInputField('taskWhy')">
+                  <i class="fas fa-plus"></i>
+                </button>
               </label>
               <div id="taskWhy-container" class="multi-input-container">
                 <div class="input-group">
@@ -113,7 +124,9 @@
                     rows="3"
                     placeholder="Explain the business value or technical necessity"
                   ></textarea>
-                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -121,7 +134,9 @@
             <div>
               <label for="taskHow">
                 How will this task be implemented?
-                <button type="button" class="btn-add" onclick="addInputField('taskHow')">+</button>
+                <button type="button" class="btn-add" onclick="addInputField('taskHow')">
+                  <i class="fas fa-plus"></i>
+                </button>
               </label>
               <div id="taskHow-container" class="multi-input-container">
                 <div class="input-group">
@@ -131,7 +146,9 @@
                     rows="3"
                     placeholder="Describe the technical approach or implementation steps"
                   ></textarea>
-                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -139,7 +156,9 @@
             <div>
               <label for="acceptanceCriteria">
                 What are the acceptance criteria?
-                <button type="button" class="btn-add" onclick="addInputField('acceptanceCriteria')">+</button>
+                <button type="button" class="btn-add" onclick="addInputField('acceptanceCriteria')">
+                  <i class="fas fa-plus"></i>
+                </button>
               </label>
               <div id="acceptanceCriteria-container" class="multi-input-container">
                 <div class="input-group">
@@ -149,7 +168,9 @@
                     rows="3"
                     placeholder="List the conditions that must be met for this task to be considered complete"
                   ></textarea>
-                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -157,7 +178,9 @@
             <div>
               <label for="dependencies">
                 Are there any dependencies or prerequisites?
-                <button type="button" class="btn-add" onclick="addInputField('dependencies')">+</button>
+                <button type="button" class="btn-add" onclick="addInputField('dependencies')">
+                  <i class="fas fa-plus"></i>
+                </button>
               </label>
               <div id="dependencies-container" class="multi-input-container">
                 <div class="input-group">
@@ -167,7 +190,9 @@
                     rows="2"
                     placeholder="List any tasks, resources, or conditions that must be completed first"
                   ></textarea>
-                  <button type="button" class="btn-remove" onclick="removeInputField(this)">×</button>
+                  <button type="button" class="btn-remove" onclick="removeInputField(this)">
+                    <i class="fas fa-times"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -209,8 +234,7 @@
         <div class="button-group">
           <button type="submit" class="btn btn-primary">Generate</button>
           <button type="button" class="btn btn-secondary" id="resetBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>
-            Reset
+            <i class="fas fa-redo"></i> Reset
           </button>
         </div>
       </form>
@@ -222,12 +246,10 @@
           <h2>Task Short Description</h2>
           <div class="button-group">
             <button class="btn btn-icon" onclick="improveWithAI()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 1 1-10 10h10V2z"/><path d="M12 12 8 8"/><path d="m12 12 4-4"/></svg>
-              Improve with AI
+              <i class="fas fa-edit"></i> Improve with AI
             </button>
             <button class="btn btn-icon" onclick="copyToClipboard('shortOutput')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              Copy
+              <i class="fas fa-copy"></i> Copy
             </button>
           </div>
         </div>
@@ -247,16 +269,13 @@
           <h2>Task Full Description</h2>
           <div class="button-group">
             <button class="btn btn-icon" onclick="improveWithAI()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 1 1-10 10h10V2z"/><path d="M12 12 8 8"/><path d="m12 12 4-4"/></svg>
-              Improve with AI
+              <i class="fas fa-edit"></i> Improve with AI
             </button>
             <button class="btn btn-icon" onclick="copyToClipboard('fullOutput')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-              Copy
+              <i class="fas fa-copy"></i> Copy
             </button>
             <button class="btn btn-icon" onclick="exportJSON()">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-              Export JSON
+              <i class="fas fa-download"></i> Export JSON
             </button>
           </div>
         </div>
