@@ -393,8 +393,11 @@ document.getElementById('taskForm').addEventListener('submit', function(e) {
   const errorElement = document.getElementById('error');
   const outputContainer = document.getElementById('output');
   
+  // Update form data before validation
+  saveFormData();
+  
   // Validate required fields
-  if (!formData.prefix || !formData.category || formData.taskAbout.length === 0) {
+  if (!formData.prefix || !formData.category || !formData.taskAbout.length) {
     errorElement.textContent = 'Please fill in all required fields (Prefix, Category, and What is the task about?)';
     errorElement.classList.remove('hidden');
     return;
@@ -402,23 +405,35 @@ document.getElementById('taskForm').addEventListener('submit', function(e) {
   
   errorElement.classList.add('hidden');
   
-  // Generate and display output
+  // Generate output
   const { shortDesc, fullDesc } = formatOutput(formData);
   
-  // Add as new versions
+  // Reset versions if needed
   if (shortDescVersions.length === 0) {
-    shortDescVersions.push(shortDesc);
-    fullDescVersions.push(fullDesc);
+    // Initialize first versions
+    shortDescVersions = [shortDesc];
+    fullDescVersions = [fullDesc];
+    
+    // Update the output displays
+    const shortOutput = document.getElementById('shortOutput');
+    const fullOutput = document.getElementById('fullOutput');
+    
+    if (shortOutput && fullOutput) {
+      shortOutput.textContent = shortDesc;
+      fullOutput.textContent = fullDesc;
+    }
   } else {
+    // Add new versions
     addNewVersion('short', shortDesc);
     addNewVersion('full', fullDesc);
   }
   
-  // Show output container with animation
+  // Show output container
   outputContainer.classList.remove('hidden');
-  setTimeout(() => outputContainer.classList.add('visible'), 50);
-  
-  saveFormData();
+  // Use requestAnimationFrame for smoother animation
+  requestAnimationFrame(() => {
+    outputContainer.classList.add('visible');
+  });
 });
 
 // Handle form reset
